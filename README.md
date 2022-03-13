@@ -1,6 +1,6 @@
 # rutter
 
-This application just life russian twitter for testing recommendation algorithms
+This application just like russian twitter for testing recommendation algorithms
 
 ## Getting Started
 
