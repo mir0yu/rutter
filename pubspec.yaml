@@ -33,6 +33,8 @@ dependencies:
   http: ^0.13.4
   flutter_secure_storage: ^5.0.2
   get_it: ^7.2.0
+  modal_bottom_sheet: ^2.0.1
+  flutter_neumorphic: ^3.0.3
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -54,6 +56,20 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+
+  assets:
+    - assets/
+#    - assets/images/
+
+  fonts:
+
+    - family: General Sans
+      fonts:
+        - asset: assets/fonts/GeneralSans-Bold.otf
+        - asset: assets/fonts/GeneralSans-Italic.otf
+        - asset: assets/fonts/GeneralSans-Medium.otf
+        - asset: assets/fonts/GeneralSans-Regular.otf
+        - asset: assets/fonts/GeneralSans-Semibold.otf
 
   # To add assets to your application, add an assets section, like this:
   # assets:

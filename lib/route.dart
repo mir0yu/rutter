@@ -3,11 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rutter/bloc/authentication/authentication_cubit.dart';
 import 'package:rutter/bloc/login/login_cubit.dart';
 import 'package:rutter/bloc/register/register_cubit.dart';
+import 'package:rutter/bloc/tweet/tweet_cubit.dart';
 import 'package:rutter/constants/locator.dart';
 import 'package:rutter/constants/paths.dart';
 import 'package:rutter/data/services/authentication/auth_repo.dart';
 import 'package:rutter/data/services/login/login_repo.dart';
 import 'package:rutter/data/services/register/register_repo.dart';
+import 'package:rutter/data/services/tweet/tweet_repo.dart';
+import 'package:rutter/ui/screens/home_screen.dart';
 import 'package:rutter/ui/screens/login_screen.dart';
 import 'package:rutter/ui/screens/register_screen.dart';
 
@@ -33,14 +36,12 @@ class AppRouter {
           ),
         );
       case HOME:
-        // getIt.unregister<TaskCubit>();
-        // getIt.unregister<ProjectsCubit>();
-        // getIt.registerSingleton(TaskCubit(getIt<TaskRepository>()));
-        // getIt.registerSingleton(ProjectsCubit(getIt<ProjectRepository>()));
+        getIt.unregister<TweetCubit>();
+        getIt.registerSingleton(TweetCubit(getIt<TweetRepository>()));
         return CupertinoPageRoute(
           builder: (_) => BlocProvider(
-            create: (context) => LogInCubit(getIt<LoginRepository>()),
-            child: const Center(child: Text("Sadasd")),
+            create: (context) => TweetCubit(getIt<TweetRepository>()),
+            child: const HomePage(),
           ),
           // builder: (_) => MultiBlocProvider(
           //   providers: [

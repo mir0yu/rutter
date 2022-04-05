@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 class AuthenticationNetworkService {
   auth() async {
     String? token = await storage.read(key: 'token');
+    print('$token api token \n');
     final response = await http.post(Uri.parse('$BASE_URL/api/v1/token/verify/'),
       headers: {"Content-Type": "application/json",},
       body: jsonEncode({"token": token.toString()}),

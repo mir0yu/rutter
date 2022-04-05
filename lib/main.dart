@@ -17,13 +17,8 @@ class RutterApp extends StatelessWidget {
       return MaterialApp(
         initialRoute: "/auth",
         debugShowCheckedModeBanner: true,
-        title: 'Errand',
-        theme: ThemeData(
-            fontFamily: 'Rubik',
-            primaryColor: const Color(0xff7A79CD),
-            focusColor: const Color(0xff7A79CD),
-            colorScheme: ColorScheme.fromSwatch()
-                .copyWith(primary: const Color(0xff7A79CD))),
+        title: 'Rutter',
+        theme: ThemeData(fontFamily: 'General Sans'),
         onGenerateRoute: router.generateRoute,
       );
     }

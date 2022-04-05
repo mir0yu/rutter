@@ -1,5 +1,12 @@
 import 'package:flutter/material.dart';
 
+Color fromHex(String hexString) {
+final buffer = StringBuffer();
+if (hexString.length == 6 || hexString.length == 7) buffer.write('ff');
+buffer.write(hexString.replaceFirst('#', ''));
+return Color(int.parse(buffer.toString(), radix: 16));
+}
+
 class Background extends StatelessWidget {
   const Background({Key? key}) : super(key: key);
 
@@ -8,23 +15,23 @@ class Background extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: double.infinity,
-      decoration: const BoxDecoration(
-        // gradient: LinearGradient(
-        //     colors: [
-        //       const Color(0xFF151B2B).withOpacity(0.8),
-        //       const Color(0xFF1B1E21),
-        //     ],
-        //     begin: const FractionalOffset(0.0, 0.0),
-        //     end: const FractionalOffset(0.0, 0.9),
-        //     stops: const [0.0, 1.0],
-        //     tileMode: TileMode.clamp),
-        gradient: LinearGradient(
-          colors: [Color(0xffddd1df), Color(0xffe4cee8)],
-          begin: Alignment.bottomCenter,
-          end: Alignment.topCenter,
-        )
-
-      ),
+      // color: const Color(0xFC080B57),
+      // decoration: const BoxDecoration(
+      //   gradient: RadialGradient(
+      //     colors: [Color(0xff042b4a), Color(0xff000000)],
+      //     center: Alignment.center,
+      //     radius: 0.8,
+      //   )
+      //
+      // ),
+      decoration: BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
+              colors: [
+                fromHex('#EDE7FF'),
+                fromHex('#E5EBFF'),
+              ])),
     );
   }
 }
