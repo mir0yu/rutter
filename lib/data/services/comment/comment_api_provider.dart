@@ -4,13 +4,14 @@ import 'package:rutter/constants/paths.dart';
 import 'package:rutter/constants/storage.dart';
 
 class CommentNetworkService {
-  getComments(int tweetId) async {
-    String? token = await storage.read(key: 'token');
+  fetchComments(int tweetId) async {
+    String? t = await storage.read(key: 'token');
+    String? token = t.toString();
     final response = await http.get(
       Uri.parse('$BASE_URL/api/v1/tweet/comments/$tweetId'),
       headers: {
         "Content-Type": "application/json",
-        "Authorization": token.toString()
+        "Authorization": "Bearer $token",
       },
     );
 

@@ -6,6 +6,6 @@ class CommentRepository {
   CommentRepository(this.networkService);
 
   Future<Response> getComments(int tweetId) async {
-    return await networkService.getComments(tweetId);
+    return await networkService.fetchComments(tweetId);
   }
 }

@@ -1,6 +1,10 @@
-import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:rutter/bloc/comment/comment_cubit.dart';
+import 'package:rutter/constants/paths.dart';
 import 'package:rutter/data/models/tweet_model.dart';
+import 'package:rutter/ui/widgets/nested_widget.dart';
 
 class TweetWidget extends StatelessWidget {
   TweetModel tweet;
@@ -8,50 +12,53 @@ class TweetWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-      return Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Neumorphic(
-            style: NeumorphicStyle(
-                shape: NeumorphicShape.concave,
-                boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(12)),
-                depth: 10,
-                surfaceIntensity: 0.1,
-                lightSource: LightSource.top,
-                color: Colors.white,
-                intensity: 0.8,
-            ),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Neumorphic(
+          style: NeumorphicStyle(
+            shape: NeumorphicShape.convex,
+            boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(12)),
+            depth: 10,
+            surfaceIntensity: 0.1,
+            lightSource: LightSource.topRight,
+            color: Colors.white,
+            intensity: 1,
+          ),
           // elevation: 4.0,
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                 child: Row(
                   children: [
-                  GestureDetector(
-                    onTap: () {
-                      // Navigator.pushNamed(context, );
-                      print("tap on username");
+                    GestureDetector(
+                      onTap: () {
+                          Navigator.pushNamed(context, PROFILE, arguments: tweet.owner!);
                       },
-                      child: Text(tweet.owner!,
+                      child: Text(
+                        tweet.owner!,
                         style: const TextStyle(
                           color: Colors.black,
                           fontSize: 20,
                           letterSpacing: 0.5,
                           fontWeight: FontWeight.bold,
-                        ),),
+                        ),
+                      ),
                     ),
-                  const Text("  ",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold
-                    ),),
-                  Text(tweet.createdAt!,
-                    style: const TextStyle(
-                      color: Colors.grey,
-                      fontSize: 16
-                    ),)
-                ],),
+                    const Text(
+                      "  ",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      tweet.createdAt!,
+                      style: const TextStyle(color: Colors.grey, fontSize: 16),
+                    )
+                  ],
+                ),
               ),
               // Container(
               //   height: 200.0,
@@ -61,35 +68,65 @@ class TweetWidget extends StatelessWidget {
               //   ),
               // ),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 5),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20.0, vertical: 5),
                 alignment: Alignment.centerLeft,
-                child: Text(tweet.text!,
+                child: Text(
+                  tweet.text!,
                   maxLines: 4,
                   style: const TextStyle(
-                      color: Colors.black,
+                    color: Colors.black,
                     fontSize: 18,
-                  ),),
+                  ),
+                ),
               ),
               ButtonBar(
                 children: [
                   TextButton.icon(
-                    label: Text(tweet.likesCount.toString(),
-                      style: const TextStyle(color: Colors.black),),
-                    onPressed: () {print("like");},
-                    icon: const Icon(Icons.favorite_border,
-                      color: Colors.black,),
+                    label: Text(
+                      tweet.likesCount.toString(),
+                      style: const TextStyle(color: Colors.black),
+                    ),
+                    onPressed: () {
+                      print("like");
+                    },
+                    icon: const Icon(
+                      Icons.favorite_border,
+                      color: Colors.black,
+                    ),
                   ),
                   TextButton.icon(
-                    label: Text(tweet.commentsCount.toString(),
-                      style: const TextStyle(color: Colors.black),),
-                    onPressed: () {print("comment");},
-                    icon: const Icon(Icons.comment,
-                      color: Colors.black,),
-                  )
+                    label: Text(
+                      tweet.commentsCount.toString(),
+                      style: const TextStyle(color: Colors.black),
+                    ),
+                    onPressed: tweet.commentsCount !=0? () => showBarModalBottomSheet(
+                        expand: true,
+                        context: context,
+                        builder: (_) => BlocProvider.value(
+                            value: context.read<CommentCubit>(),
+                            child: NestedScrollModal(tweet: tweet)),
+                    ): null,
+                    icon: Icon(
+                      Icons.comment,
+                      color: tweet.commentsCount !=0? Colors.black : Colors.grey,
+                    ),
+                  ),
+                  TextButton.icon(
+                    label: const Text(''
+                    ),
+                    onPressed: () {
+                      print("reply");
+                    },
+                    icon: const Icon(
+                      Icons.reply,
+                      color: Colors.black,
+                    ),
+                  ),
                 ],
               )
             ],
           )),
-      );
+    );
   }
 }

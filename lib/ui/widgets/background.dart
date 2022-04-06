@@ -15,7 +15,7 @@ class Background extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: double.infinity,
-      // color: const Color(0xFC080B57),
+      color: Colors.white,
       // decoration: const BoxDecoration(
       //   gradient: RadialGradient(
       //     colors: [Color(0xff042b4a), Color(0xff000000)],
@@ -24,14 +24,14 @@ class Background extends StatelessWidget {
       //   )
       //
       // ),
-      decoration: BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight,
-              colors: [
-                fromHex('#EDE7FF'),
-                fromHex('#E5EBFF'),
-              ])),
+      // decoration: BoxDecoration(
+      //     gradient: LinearGradient(
+      //         begin: Alignment.centerLeft,
+      //         end: Alignment.centerRight,
+      //         colors: [
+      //           fromHex('#EDE7FF'),
+      //           fromHex('#E5EBFF'),
+      //         ])),
     );
   }
 }

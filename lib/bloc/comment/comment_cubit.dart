@@ -12,13 +12,13 @@ class CommentCubit extends Cubit<CommentState> {
   final CommentRepository repository;
 
   CommentCubit(this.repository) : super(CommentInitial());
-  void fetchTasks(int tweetId) {
+  void fetchComments(int tweetId) {
     emit(CommentsLoading());
     repository.getComments(tweetId).then((response) {
       if (response.statusCode == 200) {
         var rawComments = jsonDecode(response.body) as List;
         List<CommentModel> comments =
-        rawComments.map((comment) => CommentModel.fromJson((comment))).toList();
+        rawComments.map((comment) => CommentModel.fromMap((comment))).toList();
         emit(CommentsLoaded(comments: comments));
       } else {
         emit(CommentsLoadingError());

@@ -17,6 +17,7 @@ class TweetsList extends StatelessWidget {
         shrinkWrap: true,
         // itemExtent: 255,
         itemCount: tweets.length,
+        physics: const BouncingScrollPhysics(),
         padding: const EdgeInsets.fromLTRB(2, 2, 2,0),
         itemBuilder: (BuildContext context, int index) {
           return TweetWidget(tweet: tweets[index]);});

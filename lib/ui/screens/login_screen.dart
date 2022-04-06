@@ -9,8 +9,8 @@ class LogInPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var _controller = TextEditingController();
-    bool isPasswordVisible = false;
+    // var _controller = TextEditingController();
+    // bool isPasswordVisible = false;
     return BlocListener<LogInCubit, LogInState>(
       listener: (context, state)
     {
@@ -41,7 +41,6 @@ class LogInPage extends StatelessWidget {
                             child: const Text(
                               'Rutter',
                               style: TextStyle(
-                                fontFamily: 'Inter',
                                 color: Colors.black87,
                                 // color: Color(0xff908FEC),
                                 fontSize: 30,
@@ -72,7 +71,6 @@ class LogInPage extends StatelessWidget {
                             },
                             style: const TextStyle(
                                 color: Colors.black,
-                                fontFamily: 'Inter',
                                 fontSize: 16
                             ),
                             cursorColor: Colors.black54,
@@ -86,7 +84,6 @@ class LogInPage extends StatelessWidget {
                               labelStyle: TextStyle(
                                 color: Colors.black54,
                                 // color: Color(0xff908FEC),
-                                fontFamily: 'Inter',
                                 fontSize: 16,
                             ),
                               labelText: 'Email',
@@ -102,7 +99,6 @@ class LogInPage extends StatelessWidget {
                             obscureText: true,
                             style: const TextStyle(
                                 color: Colors.black,
-                                fontFamily: 'Inter',
                                 fontSize: 20),
                             cursorColor: Colors.black,
                             decoration: const InputDecoration(
@@ -115,7 +111,6 @@ class LogInPage extends StatelessWidget {
                               labelStyle: TextStyle(
                                   color: Colors.black54,
                                   // color: Color(0xff908FEC),
-                                  fontFamily: 'Inter',
                                   fontSize: 16
                               ),
                               labelText: 'Пароль',
@@ -128,7 +123,7 @@ class LogInPage extends StatelessWidget {
                         child: ElevatedButton(
                             child: const Text('Войти',
                                 style: TextStyle(
-                                    fontFamily: 'Inter', fontSize: 16,
+                                    fontSize: 16,
                                     color: Colors.black54
                                 )),
                             onPressed: () async {
@@ -153,7 +148,6 @@ class LogInPage extends StatelessWidget {
                             child: const Text('Создать аккаунт',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                  fontFamily: 'Inter',
                                   color: Colors.black87,
                                   // color: Color(0xff908FEC),
                                   fontSize: 18,

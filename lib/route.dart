@@ -1,17 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rutter/bloc/authentication/authentication_cubit.dart';
+import 'package:rutter/bloc/comment/comment_cubit.dart';
 import 'package:rutter/bloc/login/login_cubit.dart';
 import 'package:rutter/bloc/register/register_cubit.dart';
 import 'package:rutter/bloc/tweet/tweet_cubit.dart';
+import 'package:rutter/bloc/user/user_cubit.dart';
 import 'package:rutter/constants/locator.dart';
 import 'package:rutter/constants/paths.dart';
 import 'package:rutter/data/services/authentication/auth_repo.dart';
+import 'package:rutter/data/services/comment/comment_repo.dart';
 import 'package:rutter/data/services/login/login_repo.dart';
 import 'package:rutter/data/services/register/register_repo.dart';
 import 'package:rutter/data/services/tweet/tweet_repo.dart';
+import 'package:rutter/data/services/user/user_repo.dart';
 import 'package:rutter/ui/screens/home_screen.dart';
 import 'package:rutter/ui/screens/login_screen.dart';
+import 'package:rutter/ui/screens/profile_screen.dart';
 import 'package:rutter/ui/screens/register_screen.dart';
 
 import 'ui/screens/authentication_screen.dart';
@@ -38,23 +43,26 @@ class AppRouter {
       case HOME:
         getIt.unregister<TweetCubit>();
         getIt.registerSingleton(TweetCubit(getIt<TweetRepository>()));
+        getIt.unregister<CommentCubit>();
+        getIt.registerSingleton(CommentCubit(getIt<CommentRepository>()));
+        // late TweetModel tweet = settings.arguments as TweetModel;
         return CupertinoPageRoute(
-          builder: (_) => BlocProvider(
-            create: (context) => TweetCubit(getIt<TweetRepository>()),
-            child: const HomePage(),
-          ),
-          // builder: (_) => MultiBlocProvider(
-          //   providers: [
-          //     BlocProvider(
-          //       create: (context) => getIt<TaskCubit>()..fetchTasks(),
-          //     ),
-          //     BlocProvider(
-          //       create: (context) => getIt<ProjectsCubit>()..fetchProjects(),
-          //     )
-          //   ],
-          //   child: HomePage(),
+          // builder: (_) => BlocProvider(
+          //   create: (context) => TweetCubit(getIt<TweetRepository>()),
+          //   child: const HomePage(),
           // ),
-        );
+        builder: (_) => MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => getIt<TweetCubit>()..fetchTweets(),
+              ),
+              BlocProvider(
+                create: (context) => getIt<CommentCubit>(),
+              ),
+            ],
+            child: const HomePage(),
+          )
+    );
       case REGISTER:
         return CupertinoPageRoute(
           builder: (_) => BlocProvider(
@@ -62,26 +70,28 @@ class AppRouter {
             child: const RegistrationPage(),
           ),
         );
-      // case PROJECT_DETAILS:
-      //   if (getIt.isRegistered<ProjectTasksCubit>()) {
-      //     getIt.unregister<ProjectTasksCubit>();
-      //   }
-      //   getIt.registerSingleton(ProjectTasksCubit(getIt<TaskRepository>()));
-      //   final args = settings.arguments as ProjectDetailsScreenArguments;
-      //   return CupertinoPageRoute(
-      //     builder: (_) => MultiBlocProvider(
-      //       providers: [
-      //         BlocProvider(
-      //           create: (context) => getIt<ProjectTasksCubit>(),
-      //         ),
-      //       ],
-      //       child: ProjectDetails(id: args.id, title: args.title),
-      //     ),
-      //   );
-      // case PROFILE:
-      //   return CupertinoPageRoute(
-      //     builder: (_) => const Profile(),
-      //   );
+      // case COMMENTS:
+        // getIt.unregister<CommentCubit>();
+        // getIt.registerSingleton(CommentCubit(getIt<CommentRepository>()));
+        // final TweetModel tweet = settings.arguments as TweetModel;
+        // return CupertinoPageRoute(
+        //   builder: (_) => MultiBlocProvider(
+        //     providers: [
+        //       BlocProvider(
+        //         create: (context) => getIt<CommentCubit>(),
+        //       ),
+        //     ],
+        //     child: NestedScrollModal(tweet: tweet,),
+        //   ),
+        // );
+      case PROFILE:
+        final String args = settings.arguments as String;
+        return CupertinoPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => UserCubit(getIt<UserRepository>()),
+            child: ProfilePage(username: args,),
+          ),
+        );
       default:
         return null;
     }
