@@ -28,7 +28,7 @@ class NestedScrollModal extends StatelessWidget {
                         var owner = state.comments[index].owner;
                         var text = state.comments[index].text;
                         return ListTile(
-                          title: Text(owner),
+                          title: Text(owner!),
                           subtitle: Text(text),
                         );
                       },

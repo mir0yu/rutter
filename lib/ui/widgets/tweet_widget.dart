@@ -6,6 +6,7 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:rutter/bloc/comment/comment_cubit.dart';
 import 'package:rutter/constants/paths.dart';
 import 'package:rutter/data/models/tweet_model.dart';
+import 'package:rutter/ui/widgets/bottomSheet/add_comment_bottom_sheet.dart';
 import 'package:rutter/ui/widgets/nested_widget.dart';
 
 class TweetWidget extends StatelessWidget {
@@ -120,7 +121,7 @@ class TweetWidget extends StatelessWidget {
                     label: const Text(''
                     ),
                     onPressed: () {
-                      print("reply");
+                      AddCommentBottomSheet(context, tweet.id!);
                     },
                     icon: const Icon(
                       Icons.reply,

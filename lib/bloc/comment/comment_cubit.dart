@@ -18,11 +18,18 @@ class CommentCubit extends Cubit<CommentState> {
       if (response.statusCode == 200) {
         var rawComments = jsonDecode(response.body) as List;
         List<CommentModel> comments =
-        rawComments.map((comment) => CommentModel.fromMap((comment))).toList();
+        rawComments.map((comment) => CommentModel.fromJson((comment))).toList();
         emit(CommentsLoaded(comments: comments));
       } else {
         emit(CommentsLoadingError());
       }
     });
+  }
+
+  addCommentToState(CommentModel comment) {
+    final currentState = state;
+    final comments = currentState.comments;
+    comments.add(comment);
+    emit(CommentsLoaded(comments: comments));
   }
 }
