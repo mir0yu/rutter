@@ -1,5 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/intl.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:rutter/bloc/comment/comment_cubit.dart';
 import 'package:rutter/constants/paths.dart';
@@ -12,6 +14,8 @@ class TweetWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    initializeDateFormatting();
+    DateFormat dateFormat = DateFormat.yMMMMd('en');
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Neumorphic(
@@ -54,7 +58,7 @@ class TweetWidget extends StatelessWidget {
                           fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      tweet.createdAt!,
+                      dateFormat.format(DateTime.parse(tweet.createdAt!)),
                       style: const TextStyle(color: Colors.grey, fontSize: 16),
                     )
                   ],

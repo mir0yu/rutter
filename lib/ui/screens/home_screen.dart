@@ -1,8 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:rutter/bloc/tweet/tweet_cubit.dart';
 import 'package:rutter/constants/paths.dart';
 import 'package:rutter/ui/widgets/background.dart';
+import 'package:rutter/ui/widgets/bottomSheet/add_tweet_bottom_sheet.dart';
 import 'package:rutter/ui/widgets/tweets_list.dart';
 
 class HomePage extends StatelessWidget {
@@ -60,10 +62,15 @@ class HomePage extends StatelessWidget {
                           child: TweetsList(tweets: state.tweets),
                         );
                       default:
-                        return const Center(child: CircularProgressIndicator());
+                        return const CupertinoActivityIndicator();
                     }
                   })
             ]
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add),
+        backgroundColor: Colors.black,
+        onPressed: () {AddTweetBottomSheet(context);},
       ),
       );
   }

@@ -45,12 +45,7 @@ class AppRouter {
         getIt.registerSingleton(TweetCubit(getIt<TweetRepository>()));
         getIt.unregister<CommentCubit>();
         getIt.registerSingleton(CommentCubit(getIt<CommentRepository>()));
-        // late TweetModel tweet = settings.arguments as TweetModel;
         return CupertinoPageRoute(
-          // builder: (_) => BlocProvider(
-          //   create: (context) => TweetCubit(getIt<TweetRepository>()),
-          //   child: const HomePage(),
-          // ),
         builder: (_) => MultiBlocProvider(
             providers: [
               BlocProvider(
@@ -70,20 +65,6 @@ class AppRouter {
             child: const RegistrationPage(),
           ),
         );
-      // case COMMENTS:
-        // getIt.unregister<CommentCubit>();
-        // getIt.registerSingleton(CommentCubit(getIt<CommentRepository>()));
-        // final TweetModel tweet = settings.arguments as TweetModel;
-        // return CupertinoPageRoute(
-        //   builder: (_) => MultiBlocProvider(
-        //     providers: [
-        //       BlocProvider(
-        //         create: (context) => getIt<CommentCubit>(),
-        //       ),
-        //     ],
-        //     child: NestedScrollModal(tweet: tweet,),
-        //   ),
-        // );
       case PROFILE:
         final String args = settings.arguments as String;
         return CupertinoPageRoute(

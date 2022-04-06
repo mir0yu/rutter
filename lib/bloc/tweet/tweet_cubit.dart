@@ -25,4 +25,10 @@ class TweetCubit extends Cubit<TweetState> {
       }
     });
   }
+  addTweetToState(TweetModel tweet) {
+    final currentState = state;
+    final tweets = currentState.tweets;
+    tweets.add(tweet);
+    emit(TweetsLoaded(tweets: tweets));
+  }
 }

@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:rutter/bloc/add_tweet/add_tweet_cubit.dart';
 import 'package:rutter/bloc/authentication/authentication_cubit.dart';
 import 'package:rutter/bloc/comment/comment_cubit.dart';
 import 'package:rutter/bloc/login/login_cubit.dart';
@@ -26,7 +27,6 @@ Future<void> setupLocator() async {
   getIt.registerSingleton(LoginRepository(getIt<LoginNetworkService>()));
   getIt.registerSingleton(LogInCubit(getIt<LoginRepository>()));
 
-
   // Authentication
   getIt.registerSingleton(AuthenticationNetworkService());
   getIt.registerSingleton(
@@ -45,12 +45,20 @@ Future<void> setupLocator() async {
   getIt.registerSingleton(TweetNetworkService());
   getIt.registerSingleton(TweetRepository(getIt<TweetNetworkService>()));
   getIt.registerSingleton(TweetCubit(getIt<TweetRepository>()));
-
+  // Comment
   getIt.registerSingleton(CommentNetworkService());
   getIt.registerSingleton(CommentRepository(getIt<CommentNetworkService>()));
   getIt.registerSingleton(CommentCubit(getIt<CommentRepository>()));
-
+  // User
   getIt.registerSingleton(UserNetworkService());
   getIt.registerSingleton(UserRepository(getIt<UserNetworkService>()));
   getIt.registerSingleton(UserCubit(getIt<UserRepository>()));
+  // Add tweet
+  getIt.registerSingleton(
+      AddTweetCubit(getIt<TweetRepository>(), getIt<TweetCubit>()));
+
+  // // Create Project
+  // getIt.registerSingleton(
+  //     ProjectCreatingCubit(getIt<ProjectRepository>(), getIt<ProjectsCubit>()));
+
 }

@@ -48,18 +48,6 @@ class LogInPage extends StatelessWidget {
                               ),
                             ),
                           ),
-                          // const SizedBox(
-                          //   width: 270,
-                          //   child: Text(
-                          //       'Не пропадай из инфополя вместе с друзьями.',
-                          //       textAlign: TextAlign.center,
-                          //       style: TextStyle(
-                          //           fontFamily: 'Inter',
-                          //           color: Colors.black54,
-                          //           fontSize: 16,
-                          //           fontWeight: FontWeight.normal)),
-                          // ),
-
                         ],
                       ),
                       Container(
@@ -155,23 +143,6 @@ class LogInPage extends StatelessWidget {
                                   decoration: TextDecoration.underline,
                                 )),
                           )),
-                      // Container(
-                      //     margin: const EdgeInsets.only(top: 29),
-                      //     child: GestureDetector(
-                      //       onTap: () {
-                      //         Navigator.pushNamed(context, HOME);
-                      //       },
-                      //       child: const Text(
-                      //           'ДЛЯ РАЗРАБОТЧИКОВ - НА ДОМАШНЮЮ СТРАНИЦУ',
-                      //           textAlign: TextAlign.center,
-                      //           style: TextStyle(
-                      //             fontFamily: 'Inter',
-                      //             color: Color(0xff908FEC),
-                      //             fontSize: 14,
-                      //             fontWeight: FontWeight.bold,
-                      //             decoration: TextDecoration.underline,
-                      //           )),
-                      //     )),
                     ]),
                   ),
                 ),
