@@ -16,7 +16,7 @@ class TweetCubit extends Cubit<TweetState> {
     emit(TweetsLoading());
     repository.getTweets().then((response) {
       if (response.statusCode == 200) {
-        var rawTweets = jsonDecode(response.body);
+        var rawTweets = jsonDecode(utf8.decode(response.bodyBytes));
         List<TweetModel> tweets =
         rawTweets.map<TweetModel>((tweet) => TweetModel.fromJson((tweet))).toList();
         emit(TweetsLoaded(tweets: tweets));

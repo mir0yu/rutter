@@ -136,6 +136,7 @@ class BottomSheet extends StatelessWidget {
                                   .read<AddCommentCubit>()
                                   .state
                                   .comment);
+                              // BlocProvider.of<CommentCubit>(context).fetchComments();
                               Navigator.pop(context);
                             },
                             style: ButtonStyle(

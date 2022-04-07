@@ -60,7 +60,6 @@ class RegistrationPage extends StatelessWidget {
                                       style: TextStyle(
                                           color: Colors.black,
                                           fontSize: 18,
-                                          fontFamily: 'Inter',
                                           fontWeight: FontWeight.normal),
                                     ),
                                   ),
@@ -79,7 +78,6 @@ class RegistrationPage extends StatelessWidget {
                                   },
                                   style: const TextStyle(
                                       color: Colors.black,
-                                      fontFamily: 'Inter',
                                       fontSize: 16),
                                   cursorColor: Colors.black,
                                   decoration: const InputDecoration(
@@ -96,9 +94,8 @@ class RegistrationPage extends StatelessWidget {
                                     ),
                                     labelStyle: TextStyle(
                                       color: Colors.black,
-                                      fontFamily: 'Rubik',
                                     ),
-                                    labelText: 'Логин',
+                                    labelText: 'Имя пользователя',
                                   ),
                                 )),
                             Container(
@@ -112,7 +109,6 @@ class RegistrationPage extends StatelessWidget {
                                   },
                                   style: const TextStyle(
                                       color: Colors.black,
-                                      fontFamily: 'Rubik',
                                       fontSize: 16),
                                   cursorColor: Colors.black,
                                   decoration: const InputDecoration(
@@ -124,7 +120,6 @@ class RegistrationPage extends StatelessWidget {
                                     ),
                                     labelStyle: TextStyle(
                                       color: Colors.black,
-                                      fontFamily: 'Rubik',
                                     ),
                                     labelText: 'Email',
                                   ),
@@ -141,7 +136,6 @@ class RegistrationPage extends StatelessWidget {
                                   obscureText: true,
                                   style: const TextStyle(
                                       color: Colors.black,
-                                      fontFamily: 'Rubik',
                                       fontSize: 16),
                                   cursorColor: Colors.black,
                                   decoration: const InputDecoration(
@@ -153,7 +147,6 @@ class RegistrationPage extends StatelessWidget {
                                     ),
                                     labelStyle: TextStyle(
                                         color: Colors.black,
-                                        fontFamily: 'Rubik',
                                         fontSize: 16),
                                     labelText: 'Пароль',
                                   ),
@@ -161,11 +154,13 @@ class RegistrationPage extends StatelessWidget {
                             Container(
                               width: 270,
                               height: 50,
-                              margin: const EdgeInsets.only(top: 90),
+                              margin: const EdgeInsets.only(top: 40),
                               child: ElevatedButton(
                                   child: const Text('Продолжить',
                                       style: TextStyle(
-                                          fontFamily: 'Rubik', fontSize: 16, color: Colors.black)),
+                                          fontSize: 16,
+                                          color: Colors.white
+                                      )),
                                   onPressed: () async {
                                     BlocProvider.of<RegisterCubit>(context)
                                         .registerUser(context
@@ -174,8 +169,7 @@ class RegistrationPage extends StatelessWidget {
                                         .data);
                                   },
                                   style: ButtonStyle(
-                                      backgroundColor: MaterialStateProperty.all(
-                                          const Color(0xff7A79CD)),
+                                      backgroundColor: MaterialStateProperty.all(Colors.black),
                                       shape: MaterialStateProperty.all<
                                           RoundedRectangleBorder>(
                                           RoundedRectangleBorder(

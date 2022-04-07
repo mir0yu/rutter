@@ -11,6 +11,7 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     BlocProvider.of<UserCubit>(context).fetchUser(username);
+    bool me = username == 'me' ? true : false;
     return Stack(
       children: [
         const Background(),
@@ -18,7 +19,7 @@ class ProfilePage extends StatelessWidget {
             builder: (context, state) {
               switch (state.runtimeType) {
                 case UserLoaded:
-                  return ProfileWidget(user: state.User);
+                  return ProfileWidget(user: state.User, me: me,);
                 default:
                   return const Center(child: CircularProgressIndicator());
               }

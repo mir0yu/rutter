@@ -16,7 +16,7 @@ class CommentCubit extends Cubit<CommentState> {
     emit(CommentsLoading());
     repository.getComments(tweetId).then((response) {
       if (response.statusCode == 200) {
-        var rawComments = jsonDecode(response.body) as List;
+        var rawComments = jsonDecode(utf8.decode(response.bodyBytes)) as List;
         List<CommentModel> comments =
         rawComments.map((comment) => CommentModel.fromJson((comment))).toList();
         emit(CommentsLoaded(comments: comments));

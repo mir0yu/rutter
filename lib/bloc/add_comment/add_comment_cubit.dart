@@ -31,7 +31,7 @@ class AddCommentCubit extends Cubit<AddCommentState> {
     emit(AddingComment());
     repository.addComment(Comment).then((response) {
       if (response.statusCode == 200) {
-        var newComment = jsonDecode(response.body);
+        var newComment = jsonDecode(utf8.decode(response.bodyBytes));
         emit(AddingCommentSuccess());
         emit(AddCommentInitial());
         commentCubit.addCommentToState(CommentModel.fromJson(newComment));

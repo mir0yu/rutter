@@ -135,6 +135,7 @@ class BottomSheet extends StatelessWidget {
                                       .read<AddTweetCubit>()
                                       .state
                                       .tweet);
+                                  // BlocProvider.of<TweetCubit>(context).fetchTweets();
                                   Navigator.pop(context);
                               },
                               style: ButtonStyle(

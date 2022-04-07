@@ -107,20 +107,19 @@ class LogInPage extends StatelessWidget {
                       Container(
                         width: 270,
                         height: 50,
-                        margin: const EdgeInsets.only(top: 90),
+                        margin: const EdgeInsets.only(top: 70),
                         child: ElevatedButton(
                             child: const Text('Войти',
                                 style: TextStyle(
                                     fontSize: 16,
-                                    color: Colors.black54
+                                    color: Colors.white
                                 )),
                             onPressed: () async {
                               BlocProvider.of<LogInCubit>(context).loginUser(
                                   context.read<LogInCubit>().state.data);
                             },
                             style: ButtonStyle(
-                                backgroundColor: MaterialStateProperty.all(
-                                    const Color(0xff7A79CD)),
+                                backgroundColor: MaterialStateProperty.all(Colors.black),
                                 shape: MaterialStateProperty.all<
                                     RoundedRectangleBorder>(
                                     RoundedRectangleBorder(
@@ -128,7 +127,7 @@ class LogInPage extends StatelessWidget {
                                     )))),
                       ),
                       Container(
-                          margin: const EdgeInsets.symmetric(vertical: 40),
+                          margin: const EdgeInsets.only(top: 40),
                           child: GestureDetector(
                             onTap: () {
                               Navigator.pushNamed(context, REGISTER);
